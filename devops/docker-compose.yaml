@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  # Reverse proxy
+  reverse-proxy:
+
+    build:
+      context: "$PWD/../package/reverse-proxy"
+      dockerfile: "$PWD/../containers/reverse-proxy/Dockerfile"
+
+    image: "reverse_proxy"
+
+    ports:
+      - "8080:8080"

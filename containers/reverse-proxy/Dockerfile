@@ -2,4 +2,5 @@ FROM nginx:1.20.0-alpine
 
 
 # Copy the main config
-COPY ${SRC}/nginx.conf /etc/nginx/nginx.conf
+COPY ./mime.types /etc/nginx/mime.types
+COPY ./nginx.conf /etc/nginx/nginx.conf

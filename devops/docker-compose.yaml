@@ -9,7 +9,19 @@ services:
       context: "$PWD/../package/reverse-proxy"
       dockerfile: "$PWD/../containers/reverse-proxy/Dockerfile"
 
-    image: "reverse_proxy"
+    image: "reverse-proxy"
 
     ports:
       - "8080:8080"
+
+  # Golang webserver
+  golang-webserver:
+
+    build:
+      context: "$PWD/../package/golang-webserver"
+      dockerfile: "$PWD/../containers/golang-webserver/Dockerfile"
+
+    image: "golang-webserver"
+
+    ports:
+      - "8081:8081"

@@ -56,6 +56,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	log.Println("Golang-webserver started")
 	http.HandleFunc("/", handler)
+	log.Println("Golang-webserver up and running")
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }

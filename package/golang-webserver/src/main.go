@@ -23,7 +23,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	sentence := sentences[0]
 
-	const URL = "http://127.0.0.1:8081/api/nlp"
+	const URL = "http://127.0.0.1:8080/api/nlp"
 	req, err := http.NewRequest("GET", URL, nil)
 	if err != nil {
 		log.Print(err)
@@ -57,5 +57,5 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }

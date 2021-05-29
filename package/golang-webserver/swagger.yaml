@@ -1,0 +1,79 @@
+openapi: 3.0.1
+info:
+  title: "Nginx-TFX-Goland-Python - Goland OpenAPI Specification"
+  description: "Goland API signature"
+  termsOfService: ""
+  contact:
+    email: "nicola.massarenti@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+  version: 1.0.1
+servers:
+- url: "https://${GOLANG_WEBSERVER}/api"
+- url: "http://${GOLANG_WEBSERVER}/api"
+tags:
+- name: "Text Analysis"
+  description: "Endpoints for text analysis"
+- name: "Monitoring"
+  description: "Endpoints for service monitoring"
+paths:
+  "/ml/text-analysis":
+    get:
+      tags: 
+      - "Text Analysis"
+      summary: "Returns the text analysis"
+      description: "Returns the sentiment and other analysis"
+      operationId: "getTextAnalysis"
+      parameters:
+        - in: "query"
+          name: "text"
+          description: "The sentence to be analysed."
+          required: true
+          schema:
+            type: "string"
+            example: "This is a sentence and I want to get the machine learning predictions."
+      responses:
+        200:
+          description: "Text Analysis"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/textAnalysisResponse'
+  "/monitoring/alive":
+    get:
+      tags:
+      - "Monitoring"
+      summary: Get the status of the model.
+      description: Returns the status of the model.
+      operationId: training
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/alive'
+components:
+  schemas:
+  
+    textAnalysisResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: "2017-07-21T17:32:28Z"
+        
+    
+    alive:
+      type: object
+      properties:
+        status: 
+          type: string
+          enum: ["alive"]
+          example: "alive"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2017-07-21T17:32:28Z"

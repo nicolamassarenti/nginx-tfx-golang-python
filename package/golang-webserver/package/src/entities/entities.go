@@ -23,7 +23,7 @@ type SentenceStats struct {
 	IsQuestion int
 }
 
-type SentenceAnalyzer interface {
+type NLPAnalyzer interface {
 	Sentiment(sentence string) (sentiment float32, err error)
 	Tokens(sentence string) (tokens []Token, err error)
 	Embedding(sentence string) (embedding []float32, err error)
